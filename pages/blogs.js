@@ -6,7 +6,7 @@ const Blogs = () => {
 
     const FetchBlogs = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/blogs")
+            const response = await axios.get("https://helpful-dove-beret.cyclic.app/blogs")
             if(response.status === 200){
                 setBlogs(response.data.result)
             }

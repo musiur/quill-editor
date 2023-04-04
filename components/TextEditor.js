@@ -55,7 +55,7 @@ export default function TextEditor() {
     if(value !== ""){
       try {
         const response = await axios.post(
-          "http://localhost:8080/blogs/create",
+          "https://helpful-dove-beret.cyclic.app/create",
           {body: value, title: "title", description: "description"}
         );
   
