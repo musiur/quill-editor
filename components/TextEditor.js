@@ -1,3 +1,4 @@
+import axios from "axios";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -8,7 +9,7 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 
 const modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ header: "1" }, { header: "2" }],
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [
@@ -32,7 +33,6 @@ const modules = {
  */
 const formats = [
   "header",
-  "font",
   "size",
   "bold",
   "italic",
@@ -49,9 +49,25 @@ const formats = [
 
 export default function TextEditor() {
   const [value, setValue] = useState("");
-  console.log(value);
+
+  const handleSubmit = async () => {
+    console.log(value)
+    if(value !== ""){
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/blogs/create",
+          {body: value, title: "title", description: "description"}
+        );
+  
+        console.log(response);
+        
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
   return (
-    <div style={{maxWidth: "100%"}}>
+    <div>
       <div>
         <QuillNoSSRWrapper
           placeholder="Compose here"
@@ -62,8 +78,24 @@ export default function TextEditor() {
           onChange={setValue}
         />
       </div>
-      <div style={{maxWidth: "800px", marginInline: "auto"}}>
-        <h1 style={{textAlign: "center", margin: "1rem"}}>Preview</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "1rem auto",
+        }}
+      >
+        <button
+          className="px-5 py-1 rounded-md bg-[#159895] text-white"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      </div>
+      <div className="py-10">
+        {
+          value ? <h1 className="font-bold text-2xl text-center">Preview</h1> : null
+        }
         {value ? (
           <div dangerouslySetInnerHTML={{ __html: value }} id="htmlPluggedIn" />
         ) : null}

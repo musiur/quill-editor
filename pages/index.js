@@ -2,7 +2,7 @@ import TextEditor from "@/components/TextEditor";
 
 const Home = () => {
   return (
-    <div style={{maxWidth: "60%", marginInline: "auto"}}>
+    <div className="py-10">
       <TextEditor />
     </div>
   )

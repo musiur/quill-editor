@@ -1,3 +1,8 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +10,13 @@
 }
 
 .quill {
-  max-width: 800px;
-  margin-inline: auto;
+  /* max-width: 800px; */
+  min-width: 100%;
+  /* margin-inline: auto; */
 }
 
 #htmlPluggedIn {
   position: relative;
-  /* max-width: 800px; */
   margin-inline: auto;
   margin-top: 1rem;
   padding: 1rem;
