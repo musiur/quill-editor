@@ -51,16 +51,15 @@ export default function TextEditor() {
   const [value, setValue] = useState("");
 
   const handleSubmit = async () => {
-    console.log(value)
-    if(value !== ""){
+    console.log(value);
+    if (value !== "") {
       try {
         const response = await axios.post(
           "https://helpful-dove-beret.cyclic.app/create",
-          {body: value, title: "title", description: "description"}
+          { body: value, title: "title", description: "description" }
         );
-  
+
         console.log(response);
-        
       } catch (err) {
         console.log(err);
       }
@@ -93,11 +92,15 @@ export default function TextEditor() {
         </button>
       </div>
       <div className="py-10">
-        {
-          value ? <h1 className="font-bold text-2xl text-center">Preview</h1> : null
-        }
         {value ? (
-          <div dangerouslySetInnerHTML={{ __html: value }} id="htmlPluggedIn" />
+          <h1 className="font-bold text-2xl text-center">Preview</h1>
+        ) : null}
+        {value ? (
+          <div
+            dangerouslySetInnerHTML={{ __html: value }}
+            id="htmlPluggedIn"
+            className="preview"
+          />
         ) : null}
       </div>
     </div>

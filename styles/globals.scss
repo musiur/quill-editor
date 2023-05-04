@@ -26,3 +26,21 @@
   max-width: 100%;
   position: relative;
 }
+
+.preview {
+  h1 {
+    @apply text-lg md:text-xl lg:text-2xl xl:text-3xl mt-10 mb-2;
+  }
+
+  h2 {
+    @apply text-base md:text-lg lg:text-xl xl:text-2xl mt-10 mb-2;
+  }
+
+  p {
+    @apply text-sm md:text-base xl:text-xl text-gray-600 my-2;
+  }
+
+  img {
+    @apply mt-10 mb-20;
+  }
+}
